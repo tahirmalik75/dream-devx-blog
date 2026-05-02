@@ -1,0 +1,55 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nav-h: 64px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  /* Better focus rings */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  /* Prose images */
+  .prose img {
+    @apply rounded-lg shadow-md;
+  }
+
+  /* Tiptap editor styles */
+  .tiptap-editor {
+    @apply min-h-[400px] p-4 focus:outline-none;
+  }
+  .tiptap-editor p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply text-ink-400 pointer-events-none float-left h-0;
+  }
+}
+
+@layer components {
+  /* Ad slot containers */
+  .ad-slot {
+    @apply overflow-hidden bg-ink-100 text-center text-xs text-ink-400 
+           flex items-center justify-center border border-dashed border-ink-200;
+  }
+  .ad-slot-banner   { @apply ad-slot w-full h-24; }
+  .ad-slot-sidebar  { @apply ad-slot w-full h-60; }
+  .ad-slot-inline   { @apply ad-slot w-full h-24 my-8; }
+  .ad-slot-rect     { @apply ad-slot w-full h-64; }
+
+  /* Category badge */
+  .category-badge {
+    @apply inline-block px-2 py-0.5 text-xs font-semibold uppercase tracking-widest
+           bg-accent text-white rounded;
+  }
+
+  /* Post card hover */
+  .post-card {
+    @apply relative bg-white rounded-xl overflow-hidden border border-ink-100
+           transition-shadow hover:shadow-xl;
+  }
+}
