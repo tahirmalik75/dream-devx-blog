@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* ── Article ──────────────────────────────────────── */}
-          <article className="lg:col-span-2">
+          <article className="lg:col-span-2 glass-card p-6 md:p-10 rounded-3xl">
 
             {/* Breadcrumb */}
             <nav className="text-sm text-ink-400 mb-6 flex gap-2">

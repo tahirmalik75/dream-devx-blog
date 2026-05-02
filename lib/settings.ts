@@ -3,7 +3,7 @@ import { createAdminClient } from './supabase';
 import type { SiteSettings } from '@/types';
 
 const DEFAULTS: SiteSettings = {
-  site_name: 'dream devx',
+  site_name: 'dream-devx-blog',
   tagline: 'Crafting digital experiences.',
   logo_url: null,
   favicon_url: null,

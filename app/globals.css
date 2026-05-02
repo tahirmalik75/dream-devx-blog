@@ -3,53 +3,108 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --accent: #ff4d4d;
+  --accent-light: #ff7070;
+  --ink-50:  #f8f9fa;
+  --ink-100: #e9ecef;
+  --ink-200: #dee2e6;
+  --ink-300: #ced4da;
+  --ink-400: #adb5bd;
+  --ink-500: #6c757d;
+  --ink-600: #495057;
+  --ink-700: #343a40;
+  --ink-800: #212529;
+  --ink-900: #1a1d20;
+  --ink-950: #0f1113;
+}
+
 @layer base {
-  :root {
-    --nav-h: 64px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  /* Better focus rings */
-  :focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent;
-  }
-
-  /* Prose images */
-  .prose img {
-    @apply rounded-lg shadow-md;
-  }
-
-  /* Tiptap editor styles */
-  .tiptap-editor {
-    @apply min-h-[400px] p-4 focus:outline-none;
-  }
-  .tiptap-editor p.is-editor-empty:first-child::before {
-    content: attr(data-placeholder);
-    @apply text-ink-400 pointer-events-none float-left h-0;
+  body {
+    @apply bg-[#fafafa] text-ink-900 selection:bg-accent/20 overflow-x-hidden;
+    background-attachment: fixed;
   }
 }
 
 @layer components {
-  /* Ad slot containers */
-  .ad-slot {
-    @apply overflow-hidden bg-ink-100 text-center text-xs text-ink-400 
-           flex items-center justify-center border border-dashed border-ink-200;
+  /* Glassmorphism utility */
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)];
   }
-  .ad-slot-banner   { @apply ad-slot w-full h-24; }
-  .ad-slot-sidebar  { @apply ad-slot w-full h-60; }
-  .ad-slot-inline   { @apply ad-slot w-full h-24 my-8; }
-  .ad-slot-rect     { @apply ad-slot w-full h-64; }
 
-  /* Category badge */
+  .glass-header {
+    @apply bg-white/70 backdrop-blur-xl border-b border-white/40 sticky top-0 z-50;
+  }
+
   .category-badge {
-    @apply inline-block px-2 py-0.5 text-xs font-semibold uppercase tracking-widest
-           bg-accent text-white rounded;
+    @apply px-3 py-1 bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-widest rounded-full transition-all hover:bg-accent hover:text-white;
   }
 
-  /* Post card hover */
   .post-card {
-    @apply relative bg-white rounded-xl overflow-hidden border border-ink-100
-           transition-shadow hover:shadow-xl;
+    @apply glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-accent/20;
   }
+
+  .tiptap-editor {
+    @apply min-h-[500px] outline-none py-8 px-4;
+  }
+
+  .tiptap-editor p { @apply mb-4 leading-relaxed; }
+  .tiptap-editor h2 { @apply text-2xl font-serif font-bold mt-8 mb-4 text-ink-950; }
+  .tiptap-editor h3 { @apply text-xl font-serif font-bold mt-6 mb-3 text-ink-950; }
+  .tiptap-editor ul { @apply list-disc list-inside mb-4 space-y-2; }
+  .tiptap-editor ol { @apply list-decimal list-inside mb-4 space-y-2; }
+  .tiptap-editor blockquote { @apply border-l-4 border-accent pl-6 py-2 my-6 italic text-ink-600 bg-ink-50 rounded-r-lg; }
 }
+
+/* ── Moving UI Background ────────────────────────────────────────── */
+
+.bg-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #fff, #f8f9ff);
+}
+
+.blob {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 77, 77, 0.15), transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: move 25s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+  background: radial-gradient(circle, rgba(77, 121, 255, 0.1), transparent 70%);
+  width: 800px;
+  height: 800px;
+  left: 30%;
+  top: 20%;
+  animation-duration: 35s;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  background: radial-gradient(circle, rgba(255, 77, 230, 0.1), transparent 70%);
+  width: 500px;
+  height: 500px;
+  right: 0;
+  bottom: 0;
+  animation-duration: 30s;
+  animation-delay: -10s;
+}
+
+@keyframes move {
+  from { transform: translate(-10%, -10%) scale(1); }
+  to { transform: translate(20%, 20%) scale(1.1); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-ink-200 rounded-full hover:bg-ink-300 transition-colors; }

@@ -9,6 +9,12 @@ export default async function PublicLayout({ children }: { children: React.React
 
   return (
     <>
+      <div className="bg-blobs">
+        <div className="blob" />
+        <div className="blob blob-2" />
+        <div className="blob blob-3" />
+      </div>
+
       <Header settings={settings} />
 
       {/* Top banner ad */}
