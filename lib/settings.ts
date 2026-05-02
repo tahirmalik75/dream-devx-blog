@@ -15,7 +15,7 @@ const DEFAULTS: SiteSettings = {
   social_facebook: '',
   social_instagram: '',
   social_youtube: '',
-  contact_email: 'hello@example.com',
+  contact_email: 'connect.dreamdev@gmail.com',
   about_text: 'We write thoughtful articles on technology, lifestyle, and more.',
   privacy_policy_text: '',
 };
