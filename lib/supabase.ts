@@ -21,7 +21,7 @@ export async function createServerSupabaseClient() {
     {
       cookies: {
         getAll() { return cookieStore.getAll(); },
-        setAll(toSet) {
+        setAll(toSet: any[]) {
           try { toSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options)); }
           catch { /* Server Component — ignore */ }
         },
